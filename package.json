@@ -1,0 +1,16 @@
+{
+  "name": "anatomius",
+  "productName": "anatomius",
+  "description": "Anatomius - app for archiving ills of patients",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "len-x201",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "7.1.4"
+  }
+}

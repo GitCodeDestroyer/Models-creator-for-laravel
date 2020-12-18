@@ -1,0 +1,297 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    font: lighter 18px "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #3C3F50;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+}
+
+#app {
+    display: none;
+}
+
+.popup {
+    position: fixed;
+    z-index: 10;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    text-align: center;
+    background: #3C3F50;
+    color: #FFFFFF;
+    border-radius: 30px;
+    width: 175px;
+    left: calc((100% - 200px) / 2);
+    transition: all .3s;
+    top: -34px;
+    opacity: .2;
+}
+
+#app.relation-mode .popup {
+    top: 20px;
+    opacity: 1;
+}
+
+button {
+    background: none;
+    border: none;
+    border-radius: 3px;
+}
+
+button:focus {
+    outline: none;
+}
+
+.mask {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    height: calc(100% - 45px);
+    width: 100%;
+    background: rgba(0, 0, 0, .3);
+}
+
+.triangle {
+    top: 73px;
+    z-index: 2;
+    left: calc(4% + 32.5px - 18px);
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 21px solid #FEFEFE;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+}
+
+.clearfix {
+    clear: both;
+}
+
+/*************** CANVAS STYLES **************/
+
+.container {
+    top: 0;
+    left: 50px;
+    width: calc(100% - 50px);
+    height: 100%;
+    position: fixed;
+    overflow: scroll;
+    background: #dbdeeb url(../images/border.png);
+    background-size: 50px;
+}
+/* 
+.main {
+    height: fit-content;
+    min-height: 100%;
+    width: fit-content;
+    position: relative;
+    padding: 200px;
+} */
+
+.table {
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 40px rgba(0, 0, 0, .12);
+    /* -webkit-user-select: text; */
+    border-radius: 3px;
+    padding: 3px 1px 0 1px;
+    position: absolute;
+    border: 2px solid transparent;
+}
+
+.table.ui-selected {
+    border: 2px solid #AAA;
+}
+
+.table .name {
+    height: 30px;
+    width: calc(100% - 6px);
+    margin: 10px 3px 3px;
+    padding: 0 10px;
+    border: 1px solid #EEE;
+    background: #FFF;
+}
+
+.table .cols {
+    background: #FAFAFA;
+}
+
+.table .col {
+    padding: 0 3px;
+    clear: both;
+    height: 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.col input {
+    /* font-size: 15px; */
+    width: 130px;
+    border: 1px solid #EEE;
+    background: #FFF;
+    line-height: 30px;
+    padding: 0 5px;
+}
+
+.col-name {
+    float: left;
+    margin-right: 3px;
+}
+
+.col-type {
+    float: right;
+    border: 1px solid #F5F5F5;
+}
+
+.relation {
+    z-index: 3;
+    top: 50px;
+    position: absolute;
+    height: 500px;
+    width: 500px;
+}
+
+.relation div {
+    position: absolute;
+    background: #000;
+}
+
+.relation.left .rel-bottom,
+.relation.right .rel-top {
+    left: 0;
+}
+
+.relation.right .rel-bottom,
+.relation.left .rel-top {
+    right: 0;
+}
+
+.rel-bottom {
+    bottom: 0;
+    width: calc(50% + 3px);
+    height: 3px;
+}
+
+.rel-center {
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+}
+
+.rel-top {
+    top: 0;
+    width: calc(50% - 3px);
+    height: 3px;
+}
+
+.container button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: 3px;
+    border-radius: 3px;
+    background: #FAFAFA;
+    z-index: 3;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.container button span {
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.container button:hover {
+    background: #FFFFFF;
+}
+
+.container button:active {
+    background: #F5F5F5;
+}
+
+.add-col {
+    left: calc(100% + 10px);
+}
+
+.delete-col {
+    margin-top: 2px;
+    bottom: auto !important;
+    right: calc(100% + 10px);
+}
+
+/*************** SIDEBAR STYLES **************/
+
+.sidebar {
+    top: 0;
+    z-index: 3;
+    left: 0;
+    height: 100%;
+    width: 50px;
+    position: fixed;
+    background: #fff;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .1);
+}
+
+.sidebar button {
+    width: 40px;
+    height: 40px;
+    margin: 10px 5px;
+    overflow: hidden;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.sidebar button span {
+    line-height: 40px;
+    margin: 0 7px;
+    float: left;
+}
+
+.sidebar button .icon {
+    font-size: 25px;
+}
+
+.sidebar button:hover {
+    width: 190px;
+    background: #FAFAFA;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar button:active {
+    background: #F5F5F5;
+}
+
+.sidebar .icon.save {
+    font-size: 24px;
+}
+
+.sidebar .new-relation .icon {
+    margin-left: 9px;
+}
+
+#app.relation-mode .new-relation {
+    background: #3C3F50;
+    color: #FFF;
+}
+
+/* Modals */
+
+.new-table-form {
+    position: fixed;
+    top: 10%;
+    left: 20%;
+    width: 60%;
+    height: 75%;
+    background: #FFF;
+    z-index: 3;
+}

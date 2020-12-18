@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>LMC</title>
+    <link rel="stylesheet" href="fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="loader"></div>
+    <div id="app" :class="{'relation-mode': newRelationMode}">
+        <div class="popup">Relation Mode Enabled</div>
+        <div class="sidebar">
+            <button class="new-table" @click="addNewTable()"><span class="pe-7s-plus icon"></span><span>Add a new table</span></button>
+            <button class="save" @click="save()"><span class="pe-7s-diskette icon"></span><span>Save and create</span></button>
+            <button class="delete-selected" @click="deleteSelected()"><span class="pe-7s-trash icon"></span><span>Delete selected tables</span></button>
+            <button class="new-relation" @click="newRelationMode = !newRelationMode"><span class="pe-7s-network icon"></span><span>Add a new relation</span></button>
+        </div>
+        <div class="container dragscroll" nochilddrag>
+            <div class="table" :data-id="i" style="top: 200px;left: 400px" v-for="table, i in tables" :key="i">
+                <input class="name" spellcheck="false" v-model="table.name">
+                <div class="cols">
+                    <div class="col" v-for="col,j in table.cols" :key="j" :data-id="j" @click="addNewRelation(i, j)">
+                        <input class="col-name" spellcheck="false" v-model="col.name">
+                        <input class="col-type" spellcheck="false" v-model="col.type">
+                        <button class="delete-col" v-if="table.cols.length > 1" @click="table.cols.splice(j, 1)"><span class="pe-7s-trash icon"></span></button>
+                    </div>
+                </div>
+                <button class="add-col" @click="table.cols.push({name:'',type:''})"><span class="pe-7s-plus icon"></span></button>
+            </div>
+             <!-- :style="`top: ${relation.top}, left: ${relation.left}`" -->
+            <div class="relation left" :data-start-table="relation.start[0]" :data-start-col="relation.start[1]" :data-end-table="relation.end[0]" :data-end-col="relation.end[1]" v-for="relation, i in relations">
+                <div class="rel-top"></div>
+                <div class="rel-center"></div>
+                <div class="rel-bottom"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script>
+        window.$ = window.jQuery = require('./js/jquery.min.js')
+    </script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/dragscroll.min.js"></script>
+    <script src="renderer.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

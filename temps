@@ -1,0 +1,18 @@
+            <!-- <div class="table">
+                <div class="name">TableName1</div>
+                <div class="cols">
+                    <div class="col">
+                        <input class="col-name" value="id">
+                        <input class="col-type" value="BIGINT(20)">
+                    </div>
+                    <div class="col">
+                        <input class="col-name" value="name">
+                        <input class="col-type" value="VARCHAR(255)">
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="arrow">
+                <div class="arrow-b"></div>
+                <div class="arrow-c"></div>
+                <div class="arrow-t"></div>
+            </div> -->
